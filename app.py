@@ -1,8 +1,16 @@
 from flask import Flask, request, jsonify
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
 
+# Add ProxyFix to handle headers properly in Lambda
+app.wsgi_app = ProxyFix(app.wsgi_app)
+
 tasks = []
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
 
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
