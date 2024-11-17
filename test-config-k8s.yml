@@ -1,0 +1,16 @@
+config:
+  target: "http:127.0.0.1"
+  phases:
+    - duration: 120
+      arrivalRate: 50
+
+scenarios:
+  - flow:
+      - get:
+          url: "/tasks"
+
+  - flow:
+      - post:
+          url: "/tasks"
+          json:
+            task: "New task to be created"

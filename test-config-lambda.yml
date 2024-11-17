@@ -1,0 +1,16 @@
+config:
+  target: "https://4cruz7kgp2.execute-api.eu-central-1.amazonaws.com/dev"
+  phases:
+    - duration: 120
+      arrivalRate: 50
+
+scenarios:
+  - flow:
+      - get:
+          url: "/tasks"
+
+  - flow:
+      - post:
+          url: "/tasks"
+          json:
+            task: "New task to be created"
